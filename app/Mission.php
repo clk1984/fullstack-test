@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,6 +9,14 @@ class Mission extends Model
 {
   use SoftDeletes;
 
+     protected $table = 'missions';
+    
+     protected $dates = ['deleted_at'];
+    
+     protected $fillable = [
+        'title', 'description', 'user_id',
+    ];
+  
   /*
   --------------------------------------------------------------------------
   SCOPES
@@ -19,8 +27,8 @@ class Mission extends Model
    * Scope not default titles
    */
   public function scopeNotDefaultTitles($query){
-    //TODO
-  }
+      return $query->where('title','<>','Mission title');
+        }
 
   /*
   -----------------------------------
@@ -31,8 +39,8 @@ class Mission extends Model
   /**
    * Get user of this conversation
    */
-  public function users() {
-    //TODO
+  public function user() {
+      return $this->belongsTo('App\User');
   }
 
   /*
@@ -41,5 +49,12 @@ class Mission extends Model
   --------------------------------------------------------------------------
   */
 
-  //TODO
+  public function getDescription($value){
+      if(is_null($value)){
+        return "---" ;
+      } else {
+        return $value;
+      }
+
+  }
 }

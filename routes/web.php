@@ -15,5 +15,6 @@ use App\User;
 */
 
 Route::get('/', function () {
-    return view('welcome', [$users = User::withHas("mission")->all()]);
+	$users = User::has("mission")->with("mission")->get();
+    return view('welcome')->with('users',$users);
 });

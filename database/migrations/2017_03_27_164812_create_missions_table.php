@@ -15,11 +15,12 @@ class CreateMissionsTable extends Migration
   {
     Schema::create('missions', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('title')->nullable();
+      $table->string('title')->nullable()->default('Mission title');
       $table->text('description')->nullable();
-      $table->integer('user_id')->unsigned();
-
-      //TODO
+      $table->unsignedInteger('user_id');  
+      $table->foreign('user_id')->references('id')->on('users'); 
+      $table->softDeletes(); 
+      $table->timestamps();
     });
   }
 

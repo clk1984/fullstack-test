@@ -1,5 +1,6 @@
 Vue.component('full-frame', require('./FullFrame.vue'));
 
-const conv = new Vue({
-    el: 'full-frame'
+var con = new Vue({
+      el: '#full-frame',
+      props : ['user'],
 });

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      factory(App\User::class, rand(0, 20))->create();
+     // factory(App\User::class, rand(0, 20))->create();
+      factory(App\Mission::class, rand(0, 20))->create();
     }
 }
